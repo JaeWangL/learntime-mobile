@@ -9,9 +9,9 @@ module.exports = (api) => {
           extensions: ['.ts', '.tsx', '.jsx', '.js', '.json', '.svg', '.jpg'],
           alias: {
             '@assets': './assets',
-            '@components': './app/components',
-            '@navigation': './app/navigation',
-            '@screens': './app/screens',
+            '@application': './src/application',
+            '@infrastructure': './src/infrastructure',
+            '@presentation': './src/presentation',
           },
         },
       ],
