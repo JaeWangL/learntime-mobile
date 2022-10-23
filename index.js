@@ -4,7 +4,7 @@ import './configs/ui_components';
 import { registerRootComponent } from 'expo';
 import { LogBox } from 'react-native';
 import { enableFreeze } from 'react-native-screens';
-import App from './App';
+import App from './App.tsx';
 
 LogBox.ignoreLogs(['Require']);
 
