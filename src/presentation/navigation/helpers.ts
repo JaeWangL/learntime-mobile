@@ -1,8 +1,9 @@
 import { createNavigationContainerRef } from '@react-navigation/native';
+import type { ScreenNames } from './types';
 
 export const navigationRef = createNavigationContainerRef();
 
-export function navigate(name: any, params?: any): void {
+export function navigate(name: ScreenNames, params?: any): void {
   if (navigationRef.isReady()) {
     navigationRef.navigate(name as never, params as never);
   }
