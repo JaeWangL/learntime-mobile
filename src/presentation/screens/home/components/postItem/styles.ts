@@ -13,12 +13,16 @@ export const styles = StyleSheet.create({
   },
   contentContainer: {
     width: Dimensions.get('window').width,
-    height: 140,
+    height: 160,
     backgroundColor: '#000',
   },
   actionContainer: {
     position: 'absolute',
-    bottom: Dimensions.get('window').height / 3,
-    right: 0,
+    bottom: 80,
+    right: 20,
+  },
+  labelShowMore: {
+    textDecorationLine: 'underline',
+    textDecorationColor: '#fff',
   },
 });

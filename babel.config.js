@@ -12,6 +12,7 @@ module.exports = (api) => {
             '@application': './src/application',
             '@infrastructure': './src/infrastructure',
             '@presentation': './src/presentation',
+            '@navigation': './src/presentation/navigation',
           },
         },
       ],

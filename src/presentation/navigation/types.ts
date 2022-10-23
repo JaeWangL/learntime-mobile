@@ -1,3 +1,5 @@
+import type { PostInfoDTO } from '@infrastructure/apis/post/dtos';
+
 export enum ScreenNames {
   ROOT = 'Root',
   TAB_ROOT = 'TabRoot',
@@ -21,7 +23,7 @@ export type TabRootParamList = {
 
 export type TabHomeParamList = {
   [ScreenNames.HOME]: undefined;
-  [ScreenNames.POST_DETAIL]: undefined;
+  [ScreenNames.POST_DETAIL]: { post: PostInfoDTO };
 };
 
 export type TabProfileParamList = {
