@@ -44,6 +44,7 @@
         "import/newline-after-import": "error",
         "import/no-duplicates": "error",
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/explicit-function-return-type": "error",
         "no-return-assign": "off",
         "no-param-reassign": ["error", {
           "props": true,
