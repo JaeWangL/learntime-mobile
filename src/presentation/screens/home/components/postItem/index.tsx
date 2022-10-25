@@ -51,10 +51,13 @@ function PostItem(props: PostItemProps): JSX.Element {
       </Shadow>
       <View style={styles.actionContainer}>
         <Feather name="heart" size={32} color="#fff" />
-        <Text white marginB-16 marginT-4>
+        <Text white marginB-16 marginT-4 center>
           {data.likes}
         </Text>
         <Feather name="bookmark" size={32} color="#fff" />
+        <Text white marginB-16 marginT-4 center>
+          {data.bookmarks}
+        </Text>
       </View>
     </ImageOverlay>
   );

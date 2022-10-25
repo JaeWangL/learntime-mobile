@@ -11,7 +11,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function Navigation(): JSX.Element {
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        screenOptions={{ headerShown: false, animation: 'slide_from_right' }}
+      >
         <Stack.Screen
           name={ScreenNames.TAB_ROOT}
           component={BottomTabNavigator}

@@ -9,7 +9,9 @@ const Stack = createNativeStackNavigator<TabHomeParamList>();
 
 function TabHome(): JSX.Element {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false, animation: 'slide_from_right' }}
+    >
       <Stack.Screen name={ScreenNames.HOME} component={HomeScreen} />
       <Stack.Screen
         name={ScreenNames.POST_DETAIL}

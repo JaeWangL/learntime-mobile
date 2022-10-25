@@ -1,9 +1,10 @@
-import { colors } from '@presentation/styles/colors';
+import { colors } from '@application/styles/colors';
 import { memo, useMemo } from 'react';
 import isEqual from 'react-fast-compare';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View } from 'react-native-ui-lib';
+import { styles } from './styles';
 
 type BaseLayoutProps = {
   style?: StyleProp<ViewStyle>;
@@ -18,12 +19,12 @@ function BaseLayout(props: BaseLayoutProps): JSX.Element {
   const wrapperStyle = useMemo((): ViewStyle => {
     return {
       paddingTop: useSafeArea ? insets.top : 0,
-      backgroundColor: colors.surface,
+      backgroundColor: useSafeArea ? 'transparent' : colors.surface,
     };
-  }, []);
+  }, [useSafeArea]);
 
   return (
-    <View flex style={[wrapperStyle, style]}>
+    <View flex style={[styles.container, wrapperStyle, style]}>
       {children}
     </View>
   );

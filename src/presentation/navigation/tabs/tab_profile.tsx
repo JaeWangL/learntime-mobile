@@ -8,7 +8,9 @@ const Stack = createNativeStackNavigator<TabProfileParamList>();
 
 function TabProfile(): JSX.Element {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false, animation: 'slide_from_right' }}
+    >
       <Stack.Screen name={ScreenNames.PROFILE} component={ProfileScreen} />
     </Stack.Navigator>
   );
