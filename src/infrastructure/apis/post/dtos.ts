@@ -8,6 +8,7 @@ export type PostInfoDTO = {
   likes: number;
   bookmarks: number;
   photoUrls: string[];
+  reservationUrl: string;
   provider: PostProviderModel;
   location: LocationModel;
 };

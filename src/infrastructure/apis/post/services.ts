@@ -20,6 +20,7 @@ export function getPosts(): CursorPaginationDTO<PostInfoDTO> {
             'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
           isOfficial: true,
         },
+        reservationUrl: 'https://www.naver.com',
         location: {
           latitude: 0,
           longitude: 0,
@@ -39,6 +40,7 @@ export function getPosts(): CursorPaginationDTO<PostInfoDTO> {
         photoUrls: [
           'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
         ],
+        reservationUrl: 'https://www.naver.com',
         provider: {
           id: '1',
           name: 'Test',
@@ -65,6 +67,7 @@ export function getPosts(): CursorPaginationDTO<PostInfoDTO> {
         photoUrls: [
           'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
         ],
+        reservationUrl: 'https://www.naver.com',
         provider: {
           id: '1',
           name: 'Test',

@@ -27,7 +27,7 @@ function PostDetailScreen({
         <Text>{post.title}</Text>
         <Text>{post.description}</Text>
       </ScrollView>
-      <ActionBox />
+      <ActionBox post={post} />
     </BaseLayout>
   );
 }
