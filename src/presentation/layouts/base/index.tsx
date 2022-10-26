@@ -3,7 +3,7 @@ import { memo, useMemo } from 'react';
 import isEqual from 'react-fast-compare';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View } from 'react-native-ui-lib';
+import { ConnectionStatusBar, View } from 'react-native-ui-lib';
 import { styles } from './styles';
 
 type BaseLayoutProps = {
@@ -25,6 +25,7 @@ function BaseLayout(props: BaseLayoutProps): JSX.Element {
 
   return (
     <View flex style={[styles.container, wrapperStyle, style]}>
+      <ConnectionStatusBar />
       {children}
     </View>
   );

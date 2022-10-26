@@ -1,4 +1,4 @@
-import { useReady } from '@presentation/hooks/use_ready';
+import { useReady } from '@application/hooks/use_ready';
 import Navigation from '@presentation/navigation';
 import { ScreenProvider } from '@presentation/providers/screen';
 import * as SplashScreen from 'expo-splash-screen';

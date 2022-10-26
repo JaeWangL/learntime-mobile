@@ -1,6 +1,6 @@
-import 'react-native-gesture-handler';
 import './configs/ui_foundation';
 import './configs/ui_components';
+import 'react-native-gesture-handler';
 import { registerRootComponent } from 'expo';
 import { LogBox } from 'react-native';
 import { enableFreeze } from 'react-native-screens';
