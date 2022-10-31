@@ -1,5 +1,6 @@
 import { useReady } from '@application/hooks/use_ready';
 import Navigation from '@presentation/navigation';
+import { QueryProvider } from '@presentation/providers/query';
 import { ScreenProvider } from '@presentation/providers/screen';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
@@ -23,8 +24,10 @@ export default function App(): JSX.Element | null {
     return null;
   }
   return (
-    <ScreenProvider>
-      <Navigation />
-    </ScreenProvider>
+    <QueryProvider>
+      <ScreenProvider>
+        <Navigation />
+      </ScreenProvider>
+    </QueryProvider>
   );
 }

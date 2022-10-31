@@ -11,4 +11,7 @@ export type PostInfoDTO = {
   reservationUrl: string;
   provider: PostProviderModel;
   location: LocationModel;
+  createdAt: Date;
+  updatedAt: Date;
 };
+export type UpdatePostRequest = Partial<PostInfoDTO>;

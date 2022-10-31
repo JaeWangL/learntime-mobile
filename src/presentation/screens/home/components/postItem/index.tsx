@@ -40,7 +40,7 @@ function PostItem(props: PostItemProps): JSX.Element {
               </Text>
             </View>
             <Text white>{data.title}</Text>
-            <Text white>{data.location.address_name}</Text>
+            <Text white>{data.location.addressName}</Text>
           </View>
           <TouchableOpacity onPress={onMorePress}>
             <Text white style={styles.labelShowMore}>

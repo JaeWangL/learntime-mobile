@@ -5,7 +5,11 @@ import { Carousel, LoaderScreen } from 'react-native-ui-lib';
 import PostItem from '../../components/postItem';
 
 function PostList(): JSX.Element {
-  const { data, isLoading } = useGetPosts();
+  const { data, isLoading } = useGetPosts({
+    pagable: {
+      pageSize: 10,
+    },
+  });
 
   if (isLoading || !data) {
     return <LoaderScreen />;

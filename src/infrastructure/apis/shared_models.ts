@@ -1,9 +1,9 @@
 export type LocationModel = {
   latitude: number;
   longitude: number;
-  address_name: string;
-  address_1depth_name: string;
-  address_2depth_name: string;
-  address_3depth_name: string;
-  address_4depth_detail: string;
+  addressName: string;
+  address1DepthName: string;
+  address2DepthName: string;
+  address3DepthName: string;
+  address4DepthDetail: string;
 };

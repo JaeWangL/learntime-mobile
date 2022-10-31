@@ -23,7 +23,7 @@ function PostDetailScreen({
           <Avatar size={36} source={{ uri: post.provider.profileUrl }} />
           <Text marginL-4>{post.provider.name}</Text>
         </View>
-        <Text>{post.location.address_name}</Text>
+        <Text>{post.location.addressName}</Text>
         <Text>{post.title}</Text>
         <Text>{post.description}</Text>
       </ScrollView>

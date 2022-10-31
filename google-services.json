@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "956600953127",
+    "project_id": "firestoretest-50de9",
+    "storage_bucket": "firestoretest-50de9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956600953127:android:9cbe1317c95f15ce382102",
+        "android_client_info": {
+          "package_name": "com.hops.learntime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "956600953127-vnkn57a7vd4o5rd0d2ogbh2pp1g8m9dj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkywV8aHKmw3u5VWw0v1NuSqU0bzPH3BY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "956600953127-vnkn57a7vd4o5rd0d2ogbh2pp1g8m9dj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "956600953127-bh3am06uc3p1cpo4661srlgnatbrj1jj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hops.learntime"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

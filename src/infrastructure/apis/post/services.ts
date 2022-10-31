@@ -1,96 +1,41 @@
-import type { CursorPaginationDTO } from '../pagination_models';
-import type { PostInfoDTO } from './dtos';
+import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
+import { ApiCollectionTypes } from '../constants';
+import type { CursorPaginationQuery } from '../pagination_models';
+import type { PostInfoDTO, UpdatePostRequest } from './dtos';
 
-export function getPosts(): CursorPaginationDTO<PostInfoDTO> {
-  return {
-    content: [
-      {
-        id: '1',
-        title: 'dasd',
-        description: 'desc',
-        likes: 1232,
-        bookmarks: 232,
-        photoUrls: [
-          'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
-        ],
-        provider: {
-          id: '1',
-          name: 'Test',
-          profileUrl:
-            'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
-          isOfficial: true,
-        },
-        reservationUrl: 'https://www.naver.com',
-        location: {
-          latitude: 0,
-          longitude: 0,
-          address_name: 'dasd',
-          address_1depth_name: 'dasd',
-          address_2depth_name: 'dasd',
-          address_3depth_name: 'e2',
-          address_4depth_detail: 'ads',
-        },
-      },
-      {
-        id: '2',
-        title: 'dasd',
-        description: 'desc',
-        likes: 1232,
-        bookmarks: 232,
-        photoUrls: [
-          'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
-        ],
-        reservationUrl: 'https://www.naver.com',
-        provider: {
-          id: '1',
-          name: 'Test',
-          profileUrl:
-            'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
-          isOfficial: true,
-        },
-        location: {
-          latitude: 0,
-          longitude: 0,
-          address_name: 'dasd',
-          address_1depth_name: 'dasd',
-          address_2depth_name: 'dasd',
-          address_3depth_name: 'e2',
-          address_4depth_detail: 'ads',
-        },
-      },
-      {
-        id: '3',
-        title: 'dasd',
-        description: 'desc',
-        likes: 1232,
-        bookmarks: 232,
-        photoUrls: [
-          'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
-        ],
-        reservationUrl: 'https://www.naver.com',
-        provider: {
-          id: '1',
-          name: 'Test',
-          profileUrl:
-            'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
-          isOfficial: true,
-        },
-        location: {
-          latitude: 0,
-          longitude: 0,
-          address_name: 'dasd',
-          address_1depth_name: 'dasd',
-          address_2depth_name: 'dasd',
-          address_3depth_name: 'e2',
-          address_4depth_detail: 'ads',
-        },
-      },
-    ],
-    pageable: {
-      pageNumber: 0,
-      pageSize: 10,
-    },
-    first: true,
-    last: false,
-  };
+export async function createPostAsync(
+  request: PostInfoDTO
+): Promise<FirebaseFirestoreTypes.DocumentReference<PostInfoDTO>> {
+  return firestore()
+    .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
+    .add(request);
+}
+
+export async function deletePostByIdAsync(id: string): Promise<void> {
+  await firestore()
+    .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
+    .doc(id)
+    .delete();
+}
+
+export async function updatePostByIdAsync(
+  id: string,
+  request: UpdatePostRequest
+): Promise<void> {
+  await firestore()
+    .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
+    .doc(id)
+    .update(request);
+}
+
+export function getPosts(
+  pagable: CursorPaginationQuery
+): Promise<FirebaseFirestoreTypes.QuerySnapshot<PostInfoDTO>> {
+  return firestore()
+    .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
+    .startAt(pagable.lastId)
+    .orderBy('createdAt', 'desc')
+    .limit(pagable.pageSize)
+    .get();
 }

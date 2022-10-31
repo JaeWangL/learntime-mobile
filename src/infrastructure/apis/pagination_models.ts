@@ -8,6 +8,11 @@ export type OffsetPaginationDTO<T> = {
   totalElements: number;
 };
 
+export type CursorPaginationQuery = {
+  lastId?: string;
+  pageSize: number;
+};
+
 export type CursorPaginationDTO<T> = {
   content: T[];
   pageable: {
