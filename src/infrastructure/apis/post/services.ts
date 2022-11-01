@@ -1,7 +1,9 @@
 import { logError } from '@infrastructure/logger/logger_service';
+import { getErrorMessage } from '@infrastructure/utils/error_utils';
 import { getFuncName } from '@infrastructure/utils/function_utils';
-import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import firestore from '@react-native-firebase/firestore';
+import firestore, {
+  type FirebaseFirestoreTypes,
+} from '@react-native-firebase/firestore';
 import { ApiCollectionTypes } from '../constants';
 import type { CursorPaginationQuery } from '../pagination_models';
 import type { PostInfoDTO, UpdatePostRequest } from './dtos';
@@ -14,21 +16,36 @@ export async function createPostAsync(
     .add(request);
 }
 
-export async function deletePostByIdAsync(id: string): Promise<void> {
-  await firestore()
-    .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
-    .doc(id)
-    .delete();
+export async function deletePostByIdAsync(id: string): Promise<boolean> {
+  try {
+    await firestore()
+      .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
+      .doc(id)
+      .delete();
+
+    return true;
+  } catch (err) {
+    logError(getErrorMessage(err), getFuncName());
+  }
+
+  return false;
 }
 
-export async function updatePostByIdAsync(
-  id: string,
+export async function updatePostAsync(
   request: UpdatePostRequest
-): Promise<void> {
-  await firestore()
-    .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
-    .doc(id)
-    .update(request);
+): Promise<boolean> {
+  try {
+    await firestore()
+      .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
+      .doc(request.id)
+      .update(request);
+
+    return false;
+  } catch (err) {
+    logError(getErrorMessage(err), getFuncName());
+  }
+
+  return false;
 }
 
 export async function getPosts(
@@ -42,7 +59,7 @@ export async function getPosts(
     .then((querySnapshot) => {
       return querySnapshot.docs.map((doc) => doc.data());
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       logError(err.toString(), getFuncName());
       return undefined;
     });
