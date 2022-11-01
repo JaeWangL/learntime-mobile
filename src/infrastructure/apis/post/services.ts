@@ -1,3 +1,5 @@
+import { logError } from '@infrastructure/logger/logger_service';
+import { getFuncName } from '@infrastructure/utils/function_utils';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import firestore from '@react-native-firebase/firestore';
 import { ApiCollectionTypes } from '../constants';
@@ -29,13 +31,19 @@ export async function updatePostByIdAsync(
     .update(request);
 }
 
-export function getPosts(
+export async function getPosts(
   pagable: CursorPaginationQuery
-): Promise<FirebaseFirestoreTypes.QuerySnapshot<PostInfoDTO>> {
+): Promise<PostInfoDTO[] | undefined> {
   return firestore()
     .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
-    .startAt(pagable.lastId)
     .orderBy('createdAt', 'desc')
-    .limit(pagable.pageSize)
-    .get();
+    .limitToLast(pagable.pageSize)
+    .get()
+    .then((querySnapshot) => {
+      return querySnapshot.docs.map((doc) => doc.data());
+    })
+    .catch((err) => {
+      logError(err.toString(), getFuncName());
+      return undefined;
+    });
 }

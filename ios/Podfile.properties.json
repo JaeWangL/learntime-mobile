@@ -1,5 +1,5 @@
 {
   "expo.jsEngine": "hermes",
-  "ios.deploymentTarget": "13.0",
+  "ios.deploymentTarget": "14.0",
   "ios.useFrameworks": "static"
 }

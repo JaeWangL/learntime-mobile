@@ -15,14 +15,12 @@ type GetPostsProps = {
 
 export function useGetPosts(props: GetPostsProps): GetPostsType {
   const { pagable } = props;
-  const { data } = useQuery([QueryTypes.GET_POSTS, pagable], () =>
+  const { data, isLoading } = useQuery([QueryTypes.GET_POSTS, pagable], () =>
     getPosts(pagable)
   );
 
-  console.log(data?.docs);
-
   return {
-    data: [],
-    isLoading: false,
+    data,
+    isLoading,
   };
 }
