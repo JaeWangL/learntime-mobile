@@ -1,3 +1,5 @@
+import type { FirestoreSetValueExcept } from '@infrastructure/types/firebase';
+import type { PartialExcept } from '@infrastructure/types/utilities';
 import type { LocationModel } from '../shared_models';
 import type { PostProviderModel } from './models';
 
@@ -14,4 +16,7 @@ export type PostInfoDTO = {
   createdAt: Date;
   updatedAt: Date;
 };
-export type UpdatePostRequest = Partial<PostInfoDTO>;
+export type UpdatePostRequest = FirestoreSetValueExcept<
+  PartialExcept<PostInfoDTO, 'id'>,
+  'id'
+>;
