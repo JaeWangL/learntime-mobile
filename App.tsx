@@ -4,6 +4,7 @@ import { QueryProvider } from '@presentation/providers/query';
 import { ScreenProvider } from '@presentation/providers/screen';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { RecoilRoot } from 'recoil';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -25,9 +26,11 @@ export default function App(): JSX.Element | null {
   }
   return (
     <QueryProvider>
-      <ScreenProvider>
-        <Navigation />
-      </ScreenProvider>
+      <RecoilRoot>
+        <ScreenProvider>
+          <Navigation />
+        </ScreenProvider>
+      </RecoilRoot>
     </QueryProvider>
   );
 }

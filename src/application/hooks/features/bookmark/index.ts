@@ -3,23 +3,32 @@ import { bookmarkState } from '@application/recoils/bookmark/atoms';
 import { defaultBookmarkState } from '@application/recoils/bookmark/types';
 import firestore from '@react-native-firebase/firestore';
 import { useCallback } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import type { AddBookmarkParams, RemoveBookmarkParams } from './types';
 
 type BookmarkType = {
+  isBookmarked: (postId: string) => boolean;
   addBookmark: (params: AddBookmarkParams) => void;
   removeBookmark: (params: RemoveBookmarkParams) => void;
+  toggleBookmark: (params: AddBookmarkParams) => void;
   resetBookmark: () => void;
 };
 
 export function useBookmark(): BookmarkType {
-  const setBookmark = useSetRecoilState(bookmarkState);
+  const [bookmark, setBookmark] = useRecoilState(bookmarkState);
   const { mutate } = useUpdatePost();
+
+  const isBookmarked = useCallback(
+    (postId: string): boolean => {
+      return bookmark.postIds.has(postId);
+    },
+    [bookmark.postIds]
+  );
 
   const addBookmark = useCallback((params: AddBookmarkParams): void => {
     setBookmark((prev) => {
       return {
-        postIds: [...prev.postIds, params.newPostId],
+        postIds: prev.postIds.add(params.newPostId),
       };
     });
     mutate({
@@ -30,8 +39,9 @@ export function useBookmark(): BookmarkType {
 
   const removeBookmark = useCallback((params: RemoveBookmarkParams): void => {
     setBookmark((prev) => {
+      prev.postIds.delete(params.postId);
       return {
-        postIds: prev.postIds.filter((p) => p !== params.postId),
+        postIds: prev.postIds,
       };
     });
     mutate({
@@ -40,13 +50,23 @@ export function useBookmark(): BookmarkType {
     });
   }, []);
 
+  const toggleBookmark = useCallback((params: AddBookmarkParams): void => {
+    if (isBookmarked(params.newPostId)) {
+      removeBookmark({ postId: params.newPostId });
+    } else {
+      addBookmark({ newPostId: params.newPostId });
+    }
+  }, []);
+
   const resetBookmark = useCallback((): void => {
     setBookmark(defaultBookmarkState);
   }, []);
 
   return {
+    isBookmarked,
     addBookmark,
     removeBookmark,
+    toggleBookmark,
     resetBookmark,
   };
 }
