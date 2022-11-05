@@ -1,4 +1,3 @@
-import Feather from '@expo/vector-icons/Feather';
 import { type PostInfoDTO } from '@infrastructure/apis/post/dtos';
 import ImageOverlay from '@infrastructure/components/imageOverlay';
 import { navigate } from '@navigation/helpers';
@@ -7,6 +6,8 @@ import { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
 import { Shadow } from 'react-native-shadow-2';
 import { Avatar, Text, TouchableOpacity, View } from 'react-native-ui-lib';
+import IconBookmark from './iconBookmark';
+import IconHeart from './iconHeart';
 import { styles } from './styles';
 
 type PostItemProps = {
@@ -50,14 +51,8 @@ function PostItem(props: PostItemProps): JSX.Element {
         </View>
       </Shadow>
       <View style={styles.actionContainer}>
-        <Feather name="heart" size={32} color="#fff" />
-        <Text white marginB-16 marginT-4 center>
-          {data.likes}
-        </Text>
-        <Feather name="bookmark" size={32} color="#fff" />
-        <Text white marginB-16 marginT-4 center>
-          {data.bookmarks}
-        </Text>
+        <IconHeart data={data} />
+        <IconBookmark data={data} />
       </View>
     </ImageOverlay>
   );

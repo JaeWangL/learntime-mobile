@@ -7,6 +7,7 @@ import { QueryTypes } from '../query_constants';
 type GetPostsType = {
   data?: PostInfoDTO[];
   isLoading: boolean;
+  refetch: () => void;
 };
 
 type GetPostsProps = {
@@ -15,12 +16,14 @@ type GetPostsProps = {
 
 export function useGetPosts(props: GetPostsProps): GetPostsType {
   const { pagable } = props;
-  const { data, isLoading } = useQuery([QueryTypes.GET_POSTS, pagable], () =>
-    getPosts(pagable)
+  const { data, isLoading, refetch } = useQuery(
+    [QueryTypes.GET_POSTS, pagable],
+    () => getPosts(pagable)
   );
 
   return {
     data,
     isLoading,
+    refetch,
   };
 }
