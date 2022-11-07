@@ -1,6 +1,8 @@
 import { useUpdatePost } from '@application/hooks/apis/post/update_post';
 import { bookmarkState } from '@application/recoils/bookmark/atoms';
 import { defaultBookmarkState } from '@application/recoils/bookmark/types';
+import Emitter from '@infrastructure/events/emitter';
+import { ApplicationEventTypes } from '@infrastructure/events/types';
 import firestore from '@react-native-firebase/firestore';
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
@@ -56,6 +58,7 @@ export function useBookmark(): BookmarkType {
     } else {
       addBookmark({ newPostId: params.newPostId });
     }
+    Emitter.emit(ApplicationEventTypes.BOOKMARK_TOGGLED, '');
   }, []);
 
   const resetBookmark = useCallback((): void => {

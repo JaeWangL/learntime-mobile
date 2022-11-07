@@ -1,8 +1,6 @@
 import { useBookmark } from '@application/hooks/features/bookmark';
 import Material from '@expo/vector-icons/MaterialIcons';
 import { type PostInfoDTO } from '@infrastructure/apis/post/dtos';
-import Emitter from '@infrastructure/events/emitter';
-import { ApplicationEventTypes } from '@infrastructure/events/types';
 import { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
 import { Text } from 'react-native-ui-lib';
@@ -17,7 +15,6 @@ function IconBookmark(props: IconBookmarkProps): JSX.Element {
 
   const onIconPressAsync = useCallback(async (): Promise<void> => {
     toggleBookmark({ newPostId: data.id });
-    Emitter.emit(ApplicationEventTypes.BOOKMARK_TOGGLED, '');
   }, []);
 
   return (
