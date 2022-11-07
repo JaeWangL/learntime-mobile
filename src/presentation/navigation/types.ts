@@ -6,10 +6,14 @@ export enum ScreenNames {
   TAB_ROOT = 'TabRoot',
 
   TAB_HOME = 'TabHome',
+  TAB_BOOKMARKS = 'TabBookmarks',
   TAB_PROFILE = 'TabProfile',
 
   HOME = 'Home',
   POST_DETAIL = 'PostDetail',
+
+  BOOKMARKS = 'Bookmarks',
+
   PROFILE = 'Profile',
 }
 export type ScreenType = typeof ScreenNames[keyof typeof ScreenNames];
@@ -22,6 +26,7 @@ export type RootStackParamList = {
 
 export type TabRootParamList = {
   [ScreenNames.TAB_HOME]: undefined;
+  [ScreenNames.TAB_BOOKMARKS]: undefined;
   [ScreenNames.TAB_PROFILE]: undefined;
 };
 
@@ -31,6 +36,13 @@ export type TabHomeParamList = {
 };
 export type TabHomeScreenProps<T extends keyof TabHomeParamList> =
   NativeStackScreenProps<TabHomeParamList, T>;
+
+export type TabBookmarksParamList = {
+  [ScreenNames.BOOKMARKS]: undefined;
+  [ScreenNames.POST_DETAIL]: { post: PostInfoDTO };
+};
+export type TabBookmarksScreenProps<T extends keyof TabBookmarksParamList> =
+  NativeStackScreenProps<TabBookmarksParamList, T>;
 
 export type TabProfileParamList = {
   [ScreenNames.PROFILE]: undefined;
