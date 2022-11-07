@@ -12,6 +12,7 @@ import {
   ScreenNames,
   tabInvisibleScreens,
 } from '../types';
+import TabBookmarks from './tab_bookmarks';
 import TabHome from './tab_home';
 import TabProfile from './tab_profile';
 
@@ -54,6 +55,15 @@ function BottomTabNavigator(): JSX.Element {
         component={TabHome}
         options={({ route }) => ({
           tabBarLabel: 'Home',
+          tabBarIcon: renderHomeIcon,
+          tabBarStyle: getTabBarVisibilityStyle(route),
+        })}
+      />
+      <Tab.Screen
+        name={ScreenNames.TAB_BOOKMARKS}
+        component={TabBookmarks}
+        options={({ route }) => ({
+          tabBarLabel: 'TabBookmarks',
           tabBarIcon: renderHomeIcon,
           tabBarStyle: getTabBarVisibilityStyle(route),
         })}

@@ -64,3 +64,22 @@ export async function getPosts(
       return undefined;
     });
 }
+
+export async function getPostsByIds(
+  ids: string[],
+  pagable: CursorPaginationQuery
+): Promise<PostInfoDTO[] | undefined> {
+  return firestore()
+    .collection<PostInfoDTO>(ApiCollectionTypes.POSTS)
+    .where('id', 'in', ids)
+    .orderBy('createdAt', 'desc')
+    .limitToLast(pagable.pageSize)
+    .get()
+    .then((querySnapshot) => {
+      return querySnapshot.docs.map((doc) => doc.data());
+    })
+    .catch((err: Error) => {
+      logError(err.toString(), getFuncName());
+      return undefined;
+    });
+}
