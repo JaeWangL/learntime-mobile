@@ -5,6 +5,7 @@ import Emitter from '@infrastructure/events/emitter';
 import { ApplicationEventTypes } from '@infrastructure/events/types';
 import firestore from '@react-native-firebase/firestore';
 import { useCallback } from 'react';
+import Toast from 'react-native-toast-message';
 import { useRecoilState } from 'recoil';
 import type { AddBookmarkParams, RemoveBookmarkParams } from './types';
 
@@ -36,6 +37,10 @@ export function useBookmark(): BookmarkType {
     mutate({
       id: params.newPostId,
       bookmarks: firestore.FieldValue.increment(1),
+    });
+    Toast.show({
+      type: 'success',
+      text1: '북마크에 추가되었습니다.',
     });
   }, []);
 
