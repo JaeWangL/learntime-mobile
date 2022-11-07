@@ -7,7 +7,7 @@ import { GridList, LoaderScreen } from 'react-native-ui-lib';
 import BookmarkItem from '../../components/bookmarkItem';
 
 function BookmarkList(): JSX.Element {
-  const { data, isLoading } = useGetBookmarks({
+  const { data, isFetching } = useGetBookmarks({
     pagable: {
       pageSize: 10,
     },
@@ -20,7 +20,7 @@ function BookmarkList(): JSX.Element {
     []
   );
 
-  if (isLoading || !data) {
+  if (isFetching) {
     return <LoaderScreen />;
   }
   return (

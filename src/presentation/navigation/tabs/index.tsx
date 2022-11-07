@@ -63,7 +63,7 @@ function BottomTabNavigator(): JSX.Element {
         name={ScreenNames.TAB_BOOKMARKS}
         component={TabBookmarks}
         options={({ route }) => ({
-          tabBarLabel: 'TabBookmarks',
+          tabBarLabel: 'Bookmarks',
           tabBarIcon: renderHomeIcon,
           tabBarStyle: getTabBarVisibilityStyle(route),
         })}
