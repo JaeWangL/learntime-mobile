@@ -11,10 +11,10 @@ type ActionBoxProps = {
 };
 function ActionBox(props: ActionBoxProps): JSX.Element {
   const { post } = props;
-  const { addBookmark } = useBookmark();
+  const { toggleBookmark } = useBookmark();
 
   const onAddBookmarkPress = useCallback((): void => {
-    addBookmark({ newPostId: post.id });
+    toggleBookmark({ newPostId: post.id });
   }, []);
 
   const onReservationPress = useCallback((): void => {
