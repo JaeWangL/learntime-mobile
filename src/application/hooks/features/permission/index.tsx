@@ -18,19 +18,15 @@ export function usePermission(props: PermissionProps): PermissionType {
     PermissionStatus.UNDETERMINED
   );
 
-  const toSettings = useCallback((currentStatus: PermissionStatus): void => {
-    if (currentStatus === PermissionStatus.GRANTED) {
-      return;
-    }
-
-    Linking.openSettings();
-  }, []);
-
   const checkLocationPermission = useCallback(async (): Promise<void> => {
     const result = await ExpoLocation.requestForegroundPermissionsAsync();
     setStatus(result.status);
 
-    toSettings(result.status);
+    if (result.status === PermissionStatus.GRANTED) {
+      const currentPosition = await ExpoLocation.getCurrentPositionAsync();
+    } else {
+      Linking.openSettings();
+    }
   }, []);
 
   useEffect(() => {

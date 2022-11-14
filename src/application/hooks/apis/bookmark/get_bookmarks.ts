@@ -20,6 +20,7 @@ type GetBookmarksProps = {
 export function useGetBookmarks(props: GetBookmarksProps): GetBookmarksType {
   const { pagable } = props;
   const bookmark = useRecoilValue(bookmarkState);
+  console.log(bookmark.postIds);
   const { data, isFetching, isLoading, refetch } = useQuery(
     [QueryTypes.GET_BOOKMARKS],
     () => getPostsByIds(Array.from(bookmark.postIds), pagable),
