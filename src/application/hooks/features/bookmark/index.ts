@@ -23,6 +23,9 @@ export function useBookmark(): BookmarkType {
 
   const isBookmarked = useCallback(
     (postId: string): boolean => {
+      if (bookmark.postIds.size < 1) {
+        return false;
+      }
       return bookmark.postIds.has(postId);
     },
     [bookmark.postIds]
