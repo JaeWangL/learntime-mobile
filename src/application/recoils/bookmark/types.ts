@@ -3,5 +3,5 @@ export type BookmarkState = {
 };
 
 export const defaultBookmarkState: BookmarkState = {
-  postIds: new Set<string>(),
+  postIds: new Set<string>([]),
 };
